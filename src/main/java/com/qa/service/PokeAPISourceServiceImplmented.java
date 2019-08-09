@@ -1,5 +1,6 @@
 package com.qa.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -8,10 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class PokeAPISourceServiceImplmented implements PokeAPISourceService{
+public class PokeAPISourceServiceImplmented implements PokeAPISourceService {
 
+	@Autowired
 	private RestTemplate restTemplate;
 	
+
 	public ResponseEntity<Object> findByNumber(String number) {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -19,7 +22,9 @@ public class PokeAPISourceServiceImplmented implements PokeAPISourceService{
 				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-		return restTemplate.exchange("https://pokeapi.co/api/v2/pokemon/"+number, HttpMethod.GET, entity, Object.class);
+		return restTemplate.exchange("https://pokeapi.co/api/v2/pokemon/" + number, HttpMethod.GET, entity,
+				Object.class);
+
 	}
 
 	public ResponseEntity<Object> findByName(String name) {
@@ -29,7 +34,7 @@ public class PokeAPISourceServiceImplmented implements PokeAPISourceService{
 				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-		return restTemplate.exchange("https://pokeapi.co/api/v2/pokemon/"+name, HttpMethod.GET, entity, Object.class);
+		return restTemplate.exchange("https://pokeapi.co/api/v2/pokemon/" + name, HttpMethod.GET, entity, Object.class);
 	}
-	
+
 }
