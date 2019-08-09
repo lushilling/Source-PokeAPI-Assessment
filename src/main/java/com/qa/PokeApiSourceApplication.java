@@ -26,7 +26,6 @@ public class PokeApiSourceApplication {
 		return builder.build();
 	}
 
-	
 	@Bean
 	public JmsListenerContainerFactory<?> myFactory(ConnectionFactory connectionFactory,
 			DefaultJmsListenerContainerFactoryConfigurer configurer) {
